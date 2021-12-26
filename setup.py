@@ -9,7 +9,7 @@ except IOError:
     long_description = None
 
 setup(
-    name='django-static-jquery',
+    name='django-static-libs',
     version='0.0.1',
     url="https://github.com/rokdd/django-static-libs",
     description='jQuery and other librarys ready to embed into templates',
