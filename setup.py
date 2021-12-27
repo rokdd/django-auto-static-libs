@@ -19,6 +19,7 @@ setup(
     license='BSD',
     keywords='django jquery fontawesome pygal javascript static'.split(),
     platforms='any',
+    long_description_content_type="text/markdown",
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -34,8 +35,7 @@ setup(
         'django_static_libs': [
             'static/static_libs/js/*.js',
             'static/static_libs/js/*.map',
-            'managment/commands/*.py',
-            'managment/*.py',
+   
         ],
     },
 )
