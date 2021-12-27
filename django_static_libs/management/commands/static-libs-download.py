@@ -25,6 +25,7 @@ class Command(BaseCommand):
         #total = kwargs['total']
 
         for k,pkg in self.default_packages.items():
+        	print('Download and update static lib "%s"' % (k))
 
             response = requests.get("https://api.github.com/repos/%s/releases/latest" % (pkg['github_repo']))
             #print(response.json()["tag_name"])
@@ -39,6 +40,7 @@ class Command(BaseCommand):
                 zip_info.filename = os.path.join(settings.STATIC_ROOT,"static_libs","%s/%s/%s"%(pkg['syntax'],str(k),os.path.basename(zip_info.filename)))
 
                 z.extract(zip_info,"")
+                print("Extracted "+os.path.basename(zip_info.filename)+' into '+zip_info.filename)
 
 
 
