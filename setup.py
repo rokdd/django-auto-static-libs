@@ -27,6 +27,9 @@ setup(
         'Programming Language :: Python',
     ],
     packages=['django_static_libs'],
+    install_requires=[
+        'requests',
+    ],
     package_data={
         'django_static_libs': [
             'static/static_libs/js/*.js',
