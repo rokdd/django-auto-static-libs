@@ -36,7 +36,7 @@ class Command(BaseCommand):
 			top_folder=z.namelist()[0]
 
 			for zip_info in z.infolist():
-				if not re.match(pkg['files_include'],zip_info.filename):
+				if not re.match(pkg['files_include'],zip_info.filename) or pathlib.Path(zip_info.filename).suffix in pkg['suffix_ignore']:
 					continue
 				zip_info.filename = os.path.join(settings.STATIC_ROOT,"static_libs","%s/%s/%s"%(pkg['syntax'],str(k),os.path.basename(zip_info.filename)))
 
