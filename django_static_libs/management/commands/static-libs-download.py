@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.core.management import call_command
 import requests, zipfile, io
 import os,re,pathlib
 from django.conf import settings
@@ -32,7 +33,7 @@ class Command(BaseCommand):
 			#print(response.json()["tag_name"])
 
 			r = requests.get("https://github.com/%s/archive/refs/tags/%s.zip" % (pkg['github_repo'],response.json()["tag_name"]))
-			if r.ok:
+			if r.ok and r.content!=None:
 				z = zipfile.ZipFile(io.BytesIO(r.content))
 				top_folder=z.namelist()[0]
 
@@ -49,3 +50,8 @@ class Command(BaseCommand):
 						print("Could not extract "+os.path.basename(zip_info.filename)+' into '+os.path.join(folder,zip_info.filename))
 			else:
 				print("Could not download library: "+"https://github.com/%s/archive/refs/tags/%s.zip" % (pkg['github_repo'],response.json()["tag_name"]))
+
+		print("Run collect static")
+		
+
+		call_command('collectstatic', verbosity=0, interactive=False)
