@@ -32,17 +32,20 @@ class Command(BaseCommand):
 			#print(response.json()["tag_name"])
 
 			r = requests.get("https://github.com/%s/archive/refs/tags/%s.zip" % (pkg['github_repo'],response.json()["tag_name"]))
-			z = zipfile.ZipFile(io.BytesIO(r.content))
-			top_folder=z.namelist()[0]
+			if r.ok:
+				z = zipfile.ZipFile(io.BytesIO(r.content))
+				top_folder=z.namelist()[0]
 
-			for zip_info in z.infolist():
-				if not re.match(pkg['files_include'],zip_info.filename) or pathlib.Path(zip_info.filename).suffix in pkg['suffix_ignore']:
-					continue
-				folder = os.path.join(settings.STATIC_ROOT,"static_libs","%s"%(pkg['syntax']))
-				zip_info.filename = "%s/%s"%(str(k),os.path.basename(zip_info.filename))
+				for zip_info in z.infolist():
+					if not re.match(pkg['files_include'],zip_info.filename) or pathlib.Path(zip_info.filename).suffix in pkg['suffix_ignore']:
+						continue
+					folder = os.path.join(settings.STATIC_ROOT,"static_libs","%s"%(pkg['syntax']))
+					zip_info.filename = "%s/%s"%(str(k),os.path.basename(zip_info.filename))
 
-				z.extract(zip_info,folder)
-				if os.path.isfile(os.path.join(folder,zip_info.filename)):
-					print("Extracted "+os.path.basename(zip_info.filename)+' into '+os.path.join(folder,zip_info.filename))
-				else:
-					print("Could not extract "+os.path.basename(zip_info.filename)+' into '+os.path.join(folder,zip_info.filename))
+					z.extract(zip_info,folder)
+					if os.path.isfile(os.path.join(folder,zip_info.filename)):
+						print("Extracted "+os.path.basename(zip_info.filename)+' into '+os.path.join(folder,zip_info.filename))
+					else:
+						print("Could not extract "+os.path.basename(zip_info.filename)+' into '+os.path.join(folder,zip_info.filename))
+			else:
+				print("Could not download library: "+"https://github.com/%s/archive/refs/tags/%s.zip" % (pkg['github_repo'],response.json()["tag_name"]))
