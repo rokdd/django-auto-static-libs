@@ -26,3 +26,14 @@ your settings.py:
     {% load staticfiles %}
     {% static 'static_libs/js/jquery.js' %}
 ```
+
+### Future features
+
+* add other librarys for downloading
+* custom librarys to add
+* improve process of downloading for other librarys
+* at install is always a old version of the librarys?
+* list of all librarys as command
+* remember the currently installed version
+* better error handling for download
+* testing

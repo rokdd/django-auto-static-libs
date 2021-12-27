@@ -10,7 +10,7 @@ except IOError:
 
 setup(
     name='django-static-libs',
-    version='0.0.1',
+    version='0.1',
     url="https://github.com/rokdd/django-static-libs",
     description='jQuery and other librarys ready to embed into templates',
     long_description=long_description,
