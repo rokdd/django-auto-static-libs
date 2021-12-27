@@ -34,7 +34,8 @@ setup(
         'django_static_libs': [
             'static/static_libs/js/*.js',
             'static/static_libs/js/*.map',
-            'managment/commands/*.py'
+            'managment/commands/*.py',
+            'managment/*.py',
         ],
     },
 )
