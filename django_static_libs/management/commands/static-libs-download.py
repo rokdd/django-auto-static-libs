@@ -41,7 +41,10 @@ class Command(BaseCommand):
 				zip_info.filename = os.path.join(settings.STATIC_ROOT,"static_libs","%s/%s/%s"%(pkg['syntax'],str(k),os.path.basename(zip_info.filename)))
 
 				z.extract(zip_info,"")
-				print("Extracted "+os.path.basename(zip_info.filename)+' into '+zip_info.filename)
+				if os.path.isfile(zip_info.filename):
+					print("Extracted "+os.path.basename(zip_info.filename)+' into '+zip_info.filename)
+				else:
+					print("Could not extract "+os.path.basename(zip_info.filename)+' into '+zip_info.filename)
 
 
 
