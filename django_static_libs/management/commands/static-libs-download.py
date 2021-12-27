@@ -38,9 +38,10 @@ class Command(BaseCommand):
 			for zip_info in z.infolist():
 				if not re.match(pkg['files_include'],zip_info.filename) or pathlib.Path(zip_info.filename).suffix in pkg['suffix_ignore']:
 					continue
+				folder = os.path.join(settings.STATIC_ROOT,"static_libs","%s/%s"%(pkg['syntax'],str(k)))
 				zip_info.filename = os.path.join(settings.STATIC_ROOT,"static_libs","%s/%s/%s"%(pkg['syntax'],str(k),os.path.basename(zip_info.filename)))
 
-				z.extract(zip_info,"")
+				z.extract(zip_info,folder)
 				if os.path.isfile(zip_info.filename):
 					print("Extracted "+os.path.basename(zip_info.filename)+' into '+zip_info.filename)
 				else:
