@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.core.management import call_command
 import requests, zipfile, io
-import os,re,pathlib
+import os,re,pathlib,errno
 from django.conf import settings
 
 class Command(BaseCommand):
@@ -31,16 +31,23 @@ class Command(BaseCommand):
 
 			response = requests.get("https://api.github.com/repos/%s/releases/latest" % (pkg['github_repo']))
 			#print(response.json()["tag_name"])
-
+			folder = os.path.join(settings.STATIC_ROOT,"latest_static_libs","%s"%(pkg['syntax']))
 			r = requests.get("https://github.com/%s/archive/refs/tags/%s.zip" % (pkg['github_repo'],response.json()["tag_name"]))
 			if r.ok and r.content!=None:
 				z = zipfile.ZipFile(io.BytesIO(r.content))
 				top_folder=z.namelist()[0]
 
+
+				try:
+					os.makedirs(folder)
+				except OSError as e:
+					if e.errno != errno.EEXIST:
+						raise
+
 				for zip_info in z.infolist():
 					if not re.match(pkg['files_include'],zip_info.filename) or pathlib.Path(zip_info.filename).suffix in pkg['suffix_ignore']:
 						continue
-					folder = os.path.join(settings.STATIC_ROOT,"static_libs","%s"%(pkg['syntax']))
+					
 					zip_info.filename = "%s/%s"%(str(k),os.path.basename(zip_info.filename))
 
 					z.extract(zip_info,folder)
