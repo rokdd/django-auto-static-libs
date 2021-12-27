@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 import requests, zipfile, io
 import os
 import pathlib
-
+from django.conf import settings
 
 class Command(BaseCommand):
     help = 'Download packages'
@@ -36,7 +36,7 @@ class Command(BaseCommand):
             for zip_info in z.infolist():
                 if not (zip_info.filename.startswith(top_folder+'dist/') and not pathlib.Path(zip_info.filename).suffix in pkg['ext_ignore']):
                     continue
-                zip_info.filename = os.path.join(STATIC_ROOT,"static_libs","%s/%s/%s"%(pkg['syntax'],str(k),os.path.basename(zip_info.filename)))
+                zip_info.filename = os.path.join(settings.STATIC_ROOT,"static_libs","%s/%s/%s"%(pkg['syntax'],str(k),os.path.basename(zip_info.filename)))
 
                 z.extract(zip_info,"")
 
