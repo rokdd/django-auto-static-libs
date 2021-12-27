@@ -15,7 +15,7 @@ class Command(BaseCommand):
 			'github_repo':"jquery/jquery",
 			'suffix_ignore' : [".json"],
 			'syntax':'js',
-			'files_include':r"jquery-[\d\\.]+/dist/.*",
+			'files_include':r"jquery-[\d\\.]+/dist/.*\\.(js|map)",
 		}
 	}
 
@@ -46,8 +46,3 @@ class Command(BaseCommand):
 					print("Extracted "+os.path.basename(zip_info.filename)+' into '+os.path.join(folder,zip_info.filename))
 				else:
 					print("Could not extract "+os.path.basename(zip_info.filename)+' into '+os.path.join(folder,zip_info.filename))
-
-
-
-#hello=Command()
-#hello.handle()
