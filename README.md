@@ -24,7 +24,7 @@ your settings.py:
 
 ```
     {% load staticfiles %}
-    {% static 'static_libs/js/jquery.js' %}
+    {% static 'latest_static_libs/js/jquery.js' %}
 ```
 
 ### Future features

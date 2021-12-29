@@ -1,5 +1,6 @@
-from BaseProvider import BaseProvider
+from django_static_libs.providers import BaseProvider
+
 
 class GithubProvider(BaseProvider):
-    def __init__(self,repo):
-        self.repo=repo
+    def __init__(self, repo):
+        self.repo = repo
