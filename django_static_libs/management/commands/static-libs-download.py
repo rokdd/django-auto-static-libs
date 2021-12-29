@@ -3,24 +3,16 @@ from django.core.management import call_command
 import requests, zipfile, io
 import os, re, pathlib, errno
 from django.conf import settings
-from django_static_libs.providers.GithubProvider import GithubProvider
+from django_static_libs.librarys import jquery
 
 class Command(BaseCommand):
 	help = 'Download library from their sources'
 
-	default_library = {
-		'suffix_ignore': [],
-		'files_include': '.*'
+	default_settings= { "librarys": {
+		'jquery': jquery
 	}
-	default_librarys = {
-		'jquery': {
-			'github_repo': "jquery/jquery",
-			'provider' : GithubProvider("jquery/jquery"),
-			'suffix_ignore': [".json"],
-			'syntax': 'js',
-			'files_include': r"jquery-[\d\.]+/dist/.*\.(js|map)",
-		}
 	}
+	settings=default_settings
 
 	#   def add_arguments(self, parser):
 	#       parser.add_argument('total', type=int, help='Indicates the number of users to be created')
@@ -48,30 +40,39 @@ class Command(BaseCommand):
 			print(
 				"Extracted " + os.path.basename(zip_info.filename) + ' into ' + os.path.join(folder, zip_info.filename))
 		else:
-			print("Could not extract " + os.path.basename(zip_info.filename) + ' into ' + os.path.join(folder,
-			                                                                                           zip_info.filename))
+			print("Could not extract " + os.path.basename(zip_info.filename) + ' into ' + os.path.join(folder,zip_info.filename))
 
 	def handle(self, *args, **kwargs):
 		# total = kwargs['total']
+		if hasattr(settings, "DJANGO_STATIC_LIBS"):
+			#replace the librarys when set
+			if "librarys" in settings["DJANGO_STATIC_LIBS"]:
+				self.settings["librarys"]=settings["DJANGO_STATIC_LIBS"]["librarys"]
 
-		for k, lib in self.default_librarys.items():
+		for k, lib in self.settings["librarys"].items():
 			print('Download and update static lib "%s"' % (k))
 
-			folder = os.path.join(settings.STATIC_ROOT, "latest_static_libs", "%s" % (lib['syntax']))
+			if not "provider" in lib:
+				print("Could not find type of library")
+				continue
+			if not "destination" in lib or lib["destination"]=="auto":
+				lib["destination"] = os.path.join(settings.STATIC_ROOT, "latest_static_libs", "%s" % (lib['syntax']))
+			else:
+				print("Currently only auto path is support")
+
 
 			r=lib["provider"].download()
 			# only continue when there is data
 			if r is not None:
-				z = zipfile.ZipFile(io.BytesIO(r.content))
-				for zip_info in z.infolist():
-					self.handle_file(k,lib, folder, zip_info, zfile=z)
-			elif r is None:
-				print("Could not find type of library")
+				if r.headers.get('content-type') == "application/zip":
+					z = zipfile.ZipFile(io.BytesIO(r.content))
+					for zip_info in z.infolist():
+						self.handle_file(k,lib, folder, zip_info, zfile=z)
+				else:
+					print("Currently non zip files are not supported yet")
 			else:
-				print("Could not download library: %s" % (lib['github_repo']))
+				print("Could not download library: %s" % (k))
 
 	print("Run collect static")
 
-	call_command('collectstatic', verbosity=0, interactive=False)
-
-	print("Finished")
+	call_command('collectstatic', verbosity=1, interactive=False)
