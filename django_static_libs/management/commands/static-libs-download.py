@@ -3,7 +3,7 @@ from django.core.management import call_command
 import requests, zipfile, io
 import os, re, pathlib, errno
 from django.conf import settings
-from django_static_libs.providers import GithubProvider
+from django_static_libs.providers.GithubProvider import GithubProvider
 
 class Command(BaseCommand):
     help = 'Download library from their sources'

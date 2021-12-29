@@ -1,4 +1,4 @@
-from django_static_libs.providers import BaseProvider
+from django_static_libs.providers.BaseProvider import BaseProvider
 
 
 class GithubProvider(BaseProvider):
