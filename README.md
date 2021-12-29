@@ -34,13 +34,16 @@ python manage.py static-libs-download
 
 ### Configuration
 
+Currently we support following libraries:
+
+
 In your settings.py:
 ```
 #some imports
-from django_static_libs.librarys import jquery
+from django_static_libs.libraries import jquery
 DJANGO_STATIC_LIBS = {
-#The default is the jquery library. If you add other or custom librarys it will replace the default. it need always to be a dict
-'librarys': { 
+#The default is the jquery library. If you add other or custom libraries it will replace the default. it need always to be a dict
+'libraries': { 
             'jquery':jquery,
             
             'custom_full':
