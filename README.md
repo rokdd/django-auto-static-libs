@@ -34,8 +34,9 @@ python manage.py static-libs-download
 
 ### Configuration
 
-Currently we support following libraries:
+Currently it supports the following libraries (bold the name of the corresponding configuration):
 
+* **jquery**: jQuery from github
 
 In your settings.py:
 ```
