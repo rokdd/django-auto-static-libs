@@ -24,7 +24,7 @@ class Command(BaseCommand):
     #   def add_arguments(self, parser):
     #       parser.add_argument('total', type=int, help='Indicates the number of users to be created')
 
-    def handle_file(self, lib, folder, zip_info, zfile=None):
+    def handle_file(self,k, lib, folder, zip_info, zfile=None):
         if not re.match(lib['files_include'], zip_info.filename):
             print("Not extracted " + zip_info.filename + ': Not matching include rule')
             return False
@@ -67,7 +67,7 @@ class Command(BaseCommand):
             if r is not None and r.ok and r.content is not None:
                 z = zipfile.ZipFile(io.BytesIO(r.content))
                 for zip_info in z.infolist():
-                    self.handle_file(lib, folder, zip_info, zfile=z)
+                    self.handle_file(k,lib, folder, zip_info, zfile=z)
             elif r is None:
                 print("Could not find type of library")
             else:
