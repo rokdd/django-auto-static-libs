@@ -17,7 +17,7 @@ class Command(BaseCommand):
             'github_repo': "jquery/jquery",
             'suffix_ignore': [".json"],
             'syntax': 'js',
-            'files_include': r"jquery-[\d\\.]+/dist/.*\\.(js|map)",
+            'files_include': r"jquery-[\d\.]+/dist/.*\.(js|map)",
         }
     }
 
