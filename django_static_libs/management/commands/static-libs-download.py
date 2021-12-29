@@ -75,8 +75,8 @@ class Command(BaseCommand):
                 print("Could not download library: " + "https://github.com/%s/archive/refs/tags/%s.zip" % (
                 lib['github_repo'], response.json()["tag_name"]))
 
-		print("Run collect static")
+        print("Run collect static")
 
         call_command('collectstatic', verbosity=0, interactive=False)
 
-		print("Finished")
+        print("Finished")
