@@ -60,7 +60,7 @@ class Command(BaseCommand):
 			if not "destination" in lib or lib["destination"] == "auto":
 				lib["destination"] = os.path.join(settings.STATIC_ROOT, "latest_static_libs", "%s" % (lib['syntax']))
 			else:
-				print("Currently only auto path is support")
+				print("Currently only auto path is support as destination")
 
 			r = lib["provider"].download()
 			# only continue when there is data
@@ -68,7 +68,7 @@ class Command(BaseCommand):
 				if r.headers.get('content-type') == "application/zip":
 					z = zipfile.ZipFile(io.BytesIO(r.content))
 					for zip_info in z.infolist():
-						self.handle_file(k, lib, folder, zip_info, zfile=z)
+						self.handle_file(k, lib, lib["destination"] , zip_info, zfile=z)
 				else:
 					print("Currently non zip files are not supported yet")
 			else:
