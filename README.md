@@ -34,7 +34,7 @@ python manage.py static-libs-download
 
 ### Configuration
 
-Currently it supports the following libraries (bold the name of the corresponding configuration):
+Currently it supports the following libraries (bold is the name of the corresponding configuration):
 
 * **jquery**: jQuery from github
 
@@ -51,7 +51,6 @@ DJANGO_STATIC_LIBS = {
                 {
                 'provider' : GithubProvider("jquery/jquery"),
 			    'suffix_ignore': [".json"],
-			    'syntax': 'js',
 			    'files_include': r"jquery-[\d\.]+/dist/.*\.(js|map)",
 			    #auto creates in your static root a folder "latest_static_libs". If you change this default path be careful in the templates
 			    'destination':"auto",
@@ -64,10 +63,10 @@ DJANGO_STATIC_LIBS = {
 ### Future features
 
 * own folder in static
-* add other librarys for downloading
-* improve process of downloading for other librarys
-* at install is always a old version of the librarys?
-* list of all librarys as command
+* add other libraries for downloading
+* improve process of downloading for other libraries
+* when install is not running automatically
+* new command: list of all libraries
 * remember the currently installed version
 * better error handling for download
 * testing

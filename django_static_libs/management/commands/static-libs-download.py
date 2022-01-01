@@ -58,9 +58,11 @@ class Command(BaseCommand):
 				print("Could not find type of library")
 				continue
 			if not "destination" in lib or lib["destination"] == "auto":
-				lib["destination"] = os.path.join(settings.STATIC_ROOT, "latest_static_libs", "%s" % (lib['syntax']))
+				lib["destination"] = os.path.join(settings.STATIC_ROOT, "latest_static_libs")
 			else:
 				print("Currently only auto path is support as destination")
+				#>> > variables = {"publication": "article", "author": "Me"}
+				#template.format(**variables)
 
 			r = lib["provider"].download()
 			# only continue when there is data
