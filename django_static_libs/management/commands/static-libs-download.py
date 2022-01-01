@@ -48,8 +48,8 @@ class Command(BaseCommand):
 		# total = kwargs['total']
 		if hasattr(settings, "DJANGO_STATIC_LIBS"):
 			# replace the libraries when set
-			if "libraries" in settings["DJANGO_STATIC_LIBS"]:
-				self.settings["libraries"] = settings["DJANGO_STATIC_LIBS"]["libraries"]
+			if "libraries" in get_attr(settings,"DJANGO_STATIC_LIBS"):
+				self.settings["libraries"] = get_attr(settings,"DJANGO_STATIC_LIBS")["libraries"]
 
 		for k, lib in self.settings["libraries"].items():
 			print('Download and update static lib "%s"' % (k))
