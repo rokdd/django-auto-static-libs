@@ -37,6 +37,7 @@ python manage.py static-libs-download
 Currently it supports the following libraries (bold is the name of the corresponding configuration):
 
 * **jquery**: jQuery from github
+* **fomantic_ui**: [Fomantic-UI](https://fomantic-ui.com/) from github (fork of semantic UI)
 
 In your settings.py:
 ```
