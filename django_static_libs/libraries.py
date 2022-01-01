@@ -15,6 +15,6 @@ jquery = {
 fomantic_ui = {
 	'provider': GithubProvider("fomantic/Fomantic-UI"),
 	'suffix_ignore': [".json"],
-	'files_include': r"fomantic-[\d\.]+/dist/.*",
+	'files_include': r"Fomantic-UI-[\d\.]+/dist/.*",
 	'destination': "auto",
 }
