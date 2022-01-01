@@ -44,6 +44,7 @@ Currently it supports the following libraries (bold is the name of the correspon
 * **jquery**: jQuery from github
 * **fomantic_ui**: [Fomantic-UI](https://fomantic-ui.com/) from github (fork of semantic UI)
 * **semantic_ui**: [Semantic-UI](https://semantic-ui.com/) from github
+* **masonry**: [Masonry](https://masonry.desandro.com/) from github
 
 In your settings.py:
 ```
@@ -79,8 +80,7 @@ You can add your own library as a dict into the config. Please submit your confi
 ### Future features
 
 * own folder in static
-* add other libraries for downloading
-* improve process of downloading for other libraries
+* add more libraries for downloading
 * when install is not running automatically
 * new command: list of all libraries
 * remember the currently installed version

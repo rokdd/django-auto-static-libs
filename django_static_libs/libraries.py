@@ -24,4 +24,9 @@ semantic_ui = {
 	'files_include': r"Semantic-UI-[\d\.]+/dist/(.*)",
 	'destination': "auto",
 }
-
+masonry = {
+	'provider': GithubProvider("desandro/masonry"),
+	'suffix_ignore': [],
+	'files_include': r"masonry-[\d\.]+/dist/(.*)",
+	'destination': "auto",
+}
