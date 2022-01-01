@@ -1,6 +1,6 @@
 ## Idea
 
-Provide basic libraries and resources like jQuery or semantic-ui updated and self-hosted in django applications. 
+Provide basic libraries and resources like jQuery or semantic-ui in django applications. Make it easier for keeping them updated and self-hosted. 
 
 ## Installation
 
