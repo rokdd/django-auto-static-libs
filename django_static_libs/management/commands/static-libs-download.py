@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.core.management import call_command
 import requests, zipfile, io
+from pathlib import Path
 import os, re, pathlib, errno
 from django.conf import settings
 from django_static_libs.libraries import jquery
@@ -19,7 +20,8 @@ class Command(BaseCommand):
 	#       parser.add_argument('total', type=int, help='Indicates the number of users to be created')
 
 	def handle_file(self, k, lib, folder, zip_info, zfile=None):
-		if not re.match(lib['files_include'], zip_info.filename):
+		mt=re.match(lib['files_include'], zip_info.filename)
+		if not mt:
 			print("Not extracted " + zip_info.filename + ': Not matching include rule')
 			return False
 		if pathlib.Path(zip_info.filename).suffix in lib['suffix_ignore']:
@@ -34,7 +36,15 @@ class Command(BaseCommand):
 				print("Could not create folder " + folder)
 				return
 
-		zip_info.filename = "%s/%s" % (str(k), os.path.basename(zip_info.filename))
+		zip_info.filename = "%s/%s" % (str(k), mt.group(1))
+		#os.path.basename(zip_info.filename)
+		#
+		try:
+			os.makedirs(Path(zip_info.filename).parent)
+		except OSError as e:
+			if e.errno != errno.EEXIST:
+				print("Could not create folder " + folder)
+				return
 
 		zfile.extract(zip_info, folder)
 		if os.path.isfile(os.path.join(folder, zip_info.filename)):
