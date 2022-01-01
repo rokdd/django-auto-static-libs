@@ -69,12 +69,12 @@ DJANGO_STATIC_LIBS = {
 
 You can add your own library as a dict into the config. Please submit your configurations by pull request or issue that it can be added for everyone.
 
-| **Property      | Value                  | Example                                 | Description**                                                                                                    |
-|---------------|------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| **provider**      | object of BaseProvider | ```GithubProvider("jquery/jquery")```   | Take github class as example, it gives access to the files                                                       |
+| Property      | Value                  | Example                                 | Description                                                                                            |
+|---------------|------------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------------|
+| **provider**    | object of BaseProvider | ```GithubProvider("jquery/jquery")```   | Take github class as example, it gives access to the files                                             |
 | **files_include** | regex as str           | ```[".json"]```                         | regex to include file or dir when extracting / downloading (the first matching group defines the path of folder) |
-| **suffix_ignore** | list                   | ```r"jquery-[\d\.]+/dist/(.*\.(js))"``` | list of suffixes to exclude when extracting / downloading                                                        |
-| **destination**   | str                    | "auto"                                    | Future releases to define path                                                                                   |
+| **suffix_ignore** | list                   | ```r"jquery-[\d\.]+/dist/(.*\.(js))"``` | list of suffixes to exclude when extracting / downloading                                              |
+| **destination** | str                    | "auto"                                    | Future releases to define path                                                                         |
 
 ### Future features
 
