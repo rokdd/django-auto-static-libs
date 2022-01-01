@@ -18,3 +18,10 @@ fomantic_ui = {
 	'files_include': r"Fomantic-UI-[\d\.]+/dist/(.*)",
 	'destination': "auto",
 }
+semantic_ui = {
+	'provider': GithubProvider("Semantic-Org/Semantic-UI"),
+	'suffix_ignore': [".json"],
+	'files_include': r"Semantic-UI-[\d\.]+/dist/(.*)",
+	'destination': "auto",
+}
+

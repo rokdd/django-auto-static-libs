@@ -13,7 +13,7 @@ setup(
     version='0.1',
     url="https://github.com/rokdd/django-static-libs",
     description='jQuery and other librarys ready to embed into templates',
-    long_description=long_description,
+    long_description="Provide basic libraries and resources like jQuery or semantic-ui updated and self-hosted in django applications",
     author='rokdd',
     author_email='r0kdd@yahoo.com',
     license='BSD',
