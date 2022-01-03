@@ -7,7 +7,7 @@ Provide basic libraries and resources like jQuery or semantic-ui in django appli
 For the moment you can install the package with:
 
 ```
-pip install -e git+https://github.com/rokdd/django-auto-static-libs.git#egg=django-static-libs
+pip install django-auto-static-libs
 ```
 
 Afterwards add ``'django_auto_static_libs'`` after ``'django.contrib.staticfiles'`` to INSTALLED_APPS in
