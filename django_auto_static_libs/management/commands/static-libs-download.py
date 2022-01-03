@@ -3,18 +3,12 @@ from django.core.management import call_command
 import requests, zipfile, io
 from pathlib import Path
 import os, re, pathlib, errno
-from django.conf import settings
+from django_auto_static_libs import settings
 from django_auto_static_libs.libraries import jquery
 
 
 class Command(BaseCommand):
 	help = 'Download library from their sources'
-
-	default_settings = {"libraries": {
-		'jquery': jquery
-	}
-	}
-	settings = default_settings
 
 	#   def add_arguments(self, parser):
 	#       parser.add_argument('total', type=int, help='Indicates the number of users to be created')
@@ -27,14 +21,6 @@ class Command(BaseCommand):
 		if pathlib.Path(zip_info.filename).suffix in lib['suffix_ignore']:
 			print("Not extracted " + zip_info.filename + ': Suffix matches exclude rule')
 			return False
-
-		# now if we think that we accept this file we check that we create the dirs for the file
-		try:
-			os.makedirs(folder)
-		except OSError as e:
-			if e.errno != errno.EEXIST:
-				print("Could not create folder " + folder)
-				return
 
 		zip_info.filename = "%s/%s" % (str(k), mt.group(1))
 		#os.path.basename(zip_info.filename)
@@ -56,12 +42,8 @@ class Command(BaseCommand):
 
 	def handle(self, *args, **kwargs):
 		# total = kwargs['total']
-		if hasattr(settings, "DJANGO_AUTO_STATIC_LIBS"):
-			# replace the libraries when set
-			if "libraries" in getattr(settings,"DJANGO_AUTO_STATIC_LIBS"):
-				self.settings["libraries"] = getattr(settings,"DJANGO_AUTO_STATIC_LIBS")["libraries"]
 
-		for k, lib in self.settings["libraries"].items():
+		for k, lib in getattr(settings,"DJANGO_AUTO_STATIC_LIBS")["libraries"].items():
 			print('Download and update static lib "%s"' % (k))
 
 			if not "provider" in lib:
