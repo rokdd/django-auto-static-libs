@@ -5,7 +5,7 @@ from django.core import management
 
 
 class AutoStaticLibsConfig(AppConfig):
-	name = 'django-auto-static-libs'
+	name = 'django_auto_static_libs'
 	verbose_name = 'Django auto static lib updater'
 
 	def ready(self):
