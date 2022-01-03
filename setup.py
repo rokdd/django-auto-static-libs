@@ -9,7 +9,7 @@ except IOError:
     long_description = None
 
 setup(
-    name='django-static-libs',
+    name='django-auto-static-libs',
     version='v0.2',
     url="https://github.com/rokdd/django-auto-static-libs",
     download_url="https://github.com/rokdd/django-auto-static-libs/archive/refs/tags/v0.2.tar.gz",
