@@ -11,4 +11,4 @@ class AutoStaticLibsConfig(AppConfig):
 	def ready(self):
 
 		if 'manage.py' in sys.argv and "migrate" in sys.argv and len(sys.argv) == 2:
-			management.call_command('static-libs-download', verbosity=0, interactive=False)
+			management.call_command('static-libs-download', verbosity=0)
