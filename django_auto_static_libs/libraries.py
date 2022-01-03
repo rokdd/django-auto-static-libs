@@ -30,3 +30,9 @@ masonry = {
 	'files_include': r"masonry-[\d\.]+/dist/(.*)",
 	'destination': "auto",
 }
+pygal_js = {
+	'provider': GithubProvider("Kozea/pygal.js"),
+	'suffix_ignore': [],
+	'files_include': r"pygal.*/javascripts/(.*)",
+	'destination': "auto",
+}
