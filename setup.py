@@ -5,14 +5,17 @@ try:
     f = open(join(dirname(__file__), 'README.md'))
     long_description = f.read()
     f.close()
+
 except IOError:
     long_description = None
 
+version = __import__('django_auto_static_libs').get_version()
+
 setup(
     name='django-auto-static-libs',
-    version='0.2',
+    version=version,
     url="https://github.com/rokdd/django-auto-static-libs",
-    download_url="https://github.com/rokdd/django-auto-static-libs/archive/refs/tags/v0.2.tar.gz",
+    download_url="https://github.com/rokdd/django-auto-static-libs/archive/refs/tags/v%s.tar.gz" % version,
     description='jQuery and other librarys ready to embed into templates',
     long_description="Provide basic libraries and resources like jQuery or semantic-ui updated and self-hosted in django applications",
     author='rokdd',
@@ -29,6 +32,7 @@ setup(
         'Programming Language :: Python',
     ],
     packages=['django_auto_static_libs'],
+
     install_requires=[
         'requests',
     ]
