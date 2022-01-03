@@ -1,4 +1,4 @@
-from django_static_libs.providers.BaseProvider import BaseProvider
+from django_auto_static_libs.providers.BaseProvider import BaseProvider
 import requests, zipfile, io
 import os, re, pathlib, errno
 

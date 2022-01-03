@@ -7,17 +7,17 @@ Provide basic libraries and resources like jQuery or semantic-ui in django appli
 For the moment you can install the package with:
 
 ```
-pip install -e git+https://github.com/rokdd/django-static-libs.git#egg=django-static-libs
+pip install -e git+https://github.com/rokdd/django-auto-static-libs.git#egg=django-static-libs
 ```
 
-Afterwards add ``'django_static_libs'`` after ``'django.contrib.staticfiles'`` to INSTALLED_APPS in
+Afterwards add ``'django_auto_static_libs'`` after ``'django.contrib.staticfiles'`` to INSTALLED_APPS in
 your settings.py:
 ```
 INSTALLED_APPS = (
     # ...
 
     'django.contrib.staticfiles',
-    'django_static_libs',
+    'django_auto_static_libs',
 
     # ...
 )
@@ -28,7 +28,7 @@ INSTALLED_APPS = (
 In your templates add:
 ```
 {% load static %}
-<script src="{% static 'latest_static_libs/js/jquery/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'latest_auto_static_libs/js/jquery/jquery.min.js' %}" type="text/javascript"></script>
 ```
 
 You must run the downloading at the beginning (and to update again):
@@ -50,7 +50,7 @@ In your settings.py:
 ```
 #some imports
 from django_static_libs.libraries import jquery
-DJANGO_STATIC_LIBS = {
+DJANGO_AUTO_STATIC_LIBS = {
 #The default is the jquery library. If you add other or custom libraries it will replace the default. it need always to be a dict, the key represents your folder and will be needed for the static import
 'libraries': { 
             'jquery':jquery,

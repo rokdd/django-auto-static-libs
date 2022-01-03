@@ -10,9 +10,9 @@ except IOError:
 
 setup(
     name='django-static-libs',
-    version='v0.1',
-    url="https://github.com/rokdd/django-static-libs",
-    download_url="https://github.com/rokdd/django-static-libs/archive/refs/tags/v0.1.tar.gz",
+    version='v0.2',
+    url="https://github.com/rokdd/django-auto-static-libs",
+    download_url="https://github.com/rokdd/django-auto-static-libs/archive/refs/tags/v0.2.tar.gz",
     description='jQuery and other librarys ready to embed into templates',
     long_description="Provide basic libraries and resources like jQuery or semantic-ui updated and self-hosted in django applications",
     author='rokdd',
@@ -28,7 +28,7 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
-    packages=['django_static_libs'],
+    packages=['django_auto_static_libs'],
     install_requires=[
         'requests',
     ]

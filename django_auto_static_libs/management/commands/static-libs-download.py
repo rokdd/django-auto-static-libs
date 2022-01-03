@@ -4,7 +4,7 @@ import requests, zipfile, io
 from pathlib import Path
 import os, re, pathlib, errno
 from django.conf import settings
-from django_static_libs.libraries import jquery
+from django_auto_static_libs.libraries import jquery
 
 
 class Command(BaseCommand):
@@ -56,10 +56,10 @@ class Command(BaseCommand):
 
 	def handle(self, *args, **kwargs):
 		# total = kwargs['total']
-		if hasattr(settings, "DJANGO_STATIC_LIBS"):
+		if hasattr(settings, "DJANGO_AUTO_STATIC_LIBS"):
 			# replace the libraries when set
-			if "libraries" in getattr(settings,"DJANGO_STATIC_LIBS"):
-				self.settings["libraries"] = getattr(settings,"DJANGO_STATIC_LIBS")["libraries"]
+			if "libraries" in getattr(settings,"DJANGO_AUTO_STATIC_LIBS"):
+				self.settings["libraries"] = getattr(settings,"DJANGO_AUTO_STATIC_LIBS")["libraries"]
 
 		for k, lib in self.settings["libraries"].items():
 			print('Download and update static lib "%s"' % (k))
@@ -68,7 +68,7 @@ class Command(BaseCommand):
 				print("Could not find type of library")
 				continue
 			if not "destination" in lib or lib["destination"] == "auto":
-				lib["destination"] = os.path.join(settings.STATIC_ROOT, "latest_static_libs")
+				lib["destination"] = os.path.join(settings.STATIC_ROOT, "latest_auto_static_libs")
 			else:
 				print("Currently only auto path is support as destination")
 				#>> > variables = {"publication": "article", "author": "Me"}
@@ -86,6 +86,6 @@ class Command(BaseCommand):
 			else:
 				print("Could not download library: %s" % (k))
 
-	print("Run collect static")
+	#print("Run collect static")
 
-	call_command('collectstatic', verbosity=1, interactive=False)
+	#call_command('collectstatic', verbosity=1, interactive=False)

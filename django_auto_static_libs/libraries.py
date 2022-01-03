@@ -1,4 +1,4 @@
-from django_static_libs.providers.GithubProvider import GithubProvider
+from django_auto_static_libs.providers.GithubProvider import GithubProvider
 
 default = {
 	'suffix_ignore': [],
