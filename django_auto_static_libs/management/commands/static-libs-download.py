@@ -4,7 +4,7 @@ import requests, zipfile, io
 from pathlib import Path
 import os, re, pathlib, errno
 from django_auto_static_libs import settings
-from django_auto_static_libs.libraries import jquery
+
 
 
 class Command(BaseCommand):
