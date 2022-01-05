@@ -61,8 +61,8 @@ class Command(BaseCommand):
 			if r is not None:
 				z=None
 				if isinstance(r,list):
+					#create empty temporary zip file
 					bytes_zip_buffer = io.BytesIO(b'PK\x05\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
-
 					z = zipfile.ZipFile(bytes_zip_buffer, "a", zipfile.ZIP_DEFLATED, False)
 					for rfile in r:
 						#print(rfile.headers)

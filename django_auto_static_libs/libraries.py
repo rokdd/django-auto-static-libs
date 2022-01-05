@@ -31,8 +31,10 @@ masonry = {
 	'destination': "auto",
 }
 pygal_js = {
-	'provider': GithubProvider("Kozea/pygal.js"),
+	'provider': SingleUrlProvider(
+		["https://raw.githubusercontent.com/Kozea/pygal.js/gh-pages/javascripts/pygal-tooltips.js",
+		 "https://raw.githubusercontent.com/Kozea/pygal.js/gh-pages/javascripts/svg.jquery.js"]),
 	'suffix_ignore': [],
-	'files_include': r"pygal.*/javascripts/(.*)",
+	'files_include': '(.*)',
 	'destination': "auto",
 }

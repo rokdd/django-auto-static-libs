@@ -47,6 +47,7 @@ Currently it supports the following libraries (bold is the name of the correspon
 * **fomantic_ui**: [Fomantic-UI](https://fomantic-ui.com/) from github (fork of semantic UI)
 * **semantic_ui**: [Semantic-UI](https://semantic-ui.com/) from github
 * **masonry**: [Masonry](https://masonry.desandro.com/) from github
+* **pygal_js**: [pygal.js](https://github.com/Kozea/pygal.js/)Javascript helper functions for pygal from github
 
 In your settings.py:
 ```python
