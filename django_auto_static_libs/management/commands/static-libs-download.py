@@ -60,7 +60,7 @@ class Command(BaseCommand):
 			# only continue when there is data
 			if r is not None:
 				z=None
-				if r is list:
+				if isinstance(r,list):
 					z = zipfile.ZipFile(io.BytesIO())
 					for rfile in r:
 						z.writestr(rfile.headers.get("Content-Disposition").split("filename=")[1],
@@ -68,7 +68,7 @@ class Command(BaseCommand):
 				elif isinstance(r,requests.Response) and r.headers.get('content-type') == "application/zip":
 					z = zipfile.ZipFile(io.BytesIO(r.content))
 				else:
-					print("Currently the files or method to download is not supported yet")
+					print("Currently the files or method to download is not supported yet",r)
 				if z is not None:
 					for zip_info in z.infolist():
 						self.handle_file(k, lib, lib["destination"] , zip_info, zfile=z)
