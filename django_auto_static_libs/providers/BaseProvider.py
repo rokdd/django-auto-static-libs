@@ -21,4 +21,4 @@ class SingleUrlProvider(BaseProvider):
 			files.append(r)
 		if files == []:
 			return None
-		return r
+		return files
