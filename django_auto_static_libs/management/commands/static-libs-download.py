@@ -60,7 +60,7 @@ class Command(BaseCommand):
 			# only continue when there is data
 			if r is not None:
 				z=None
-				if r.headers.get('content-type') == "application/zip":
+				if isinstance(r,requests.Response) and r.headers.get('content-type') == "application/zip":
 					z = zipfile.ZipFile(io.BytesIO(r.content))
 				elif r is list:
 					z = zipfile.ZipFile(io.BytesIO())
