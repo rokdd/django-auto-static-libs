@@ -67,7 +67,7 @@ class Command(BaseCommand):
 					for rfile in r:
 						#print(rfile.headers)
 						#rfile.headers.get("content-disposition").split("filename=")[1]
-						z.writestr(os.path.basename(r.url),
+						z.writestr(os.path.basename(rfile.url),
 						           z.io.BytesIO(rfile.content))
 				elif isinstance(r,requests.Response) and r.headers.get('content-type') == "application/zip":
 					z = zipfile.ZipFile(io.BytesIO(r.content))
