@@ -61,7 +61,8 @@ class Command(BaseCommand):
 			if r is not None:
 				z=None
 				if isinstance(r,list):
-					z = zipfile.ZipFile("temp.zip")
+					bytes_zip_buffer = io.BytesIO()
+					z = zipfile.ZipFile(bytes_zip_buffer)
 					for rfile in r:
 						z.writestr(rfile.headers.get("Content-Disposition").split("filename=")[1],
 						           z.io.BytesIO(rfile.content))
