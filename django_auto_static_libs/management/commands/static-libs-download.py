@@ -63,7 +63,7 @@ class Command(BaseCommand):
 				if isinstance(r,list):
 					bytes_zip_buffer = io.BytesIO(b'PK\x05\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
 
-					z = zipfile.ZipFile(bytes_zip_buffer)
+					z = zipfile.ZipFile(bytes_zip_buffer, "a", zipfile.ZIP_DEFLATED, False)
 					for rfile in r:
 						#print(rfile.headers)
 						#rfile.headers.get("content-disposition").split("filename=")[1]
