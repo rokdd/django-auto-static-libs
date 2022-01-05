@@ -59,12 +59,19 @@ class Command(BaseCommand):
 			r = lib["provider"].download()
 			# only continue when there is data
 			if r is not None:
+				z=None
 				if r.headers.get('content-type') == "application/zip":
 					z = zipfile.ZipFile(io.BytesIO(r.content))
+				elif r is list:
+					z = zipfile.ZipFile(io.BytesIO())
+					for rfile in r:
+						z.writestr(rfile.headers.get("Content-Disposition").split("filename=")[1],z.io.BytesIO(rfile.content))
+				else:
+					print("Currently the files or method to download is not supported yet")
+				if z is not None:
 					for zip_info in z.infolist():
 						self.handle_file(k, lib, lib["destination"] , zip_info, zfile=z)
-				else:
-					print("Currently non zip files are not supported yet")
+
 			else:
 				print("Could not download library: %s" % (k))
 
