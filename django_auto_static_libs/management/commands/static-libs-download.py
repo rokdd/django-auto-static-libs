@@ -65,7 +65,8 @@ class Command(BaseCommand):
 
 					z = zipfile.ZipFile(bytes_zip_buffer)
 					for rfile in r:
-						z.writestr(rfile.headers.get("Content-Disposition").split("filename=")[1],
+						print(rfile.headers)
+						z.writestr(rfile.headers.get(content-disposition").split("filename=")[1],
 						           z.io.BytesIO(rfile.content))
 				elif isinstance(r,requests.Response) and r.headers.get('content-type') == "application/zip":
 					z = zipfile.ZipFile(io.BytesIO(r.content))
