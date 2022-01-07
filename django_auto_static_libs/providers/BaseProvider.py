@@ -34,7 +34,7 @@ class SingleUrlByExtractProvider(SingleUrlProvider):
 			self.regex=regex
 		else:
 			#generate regex
-			self.regex=r'href="(?P<url>.*)".*?>'+"".join([r'(?=.*\%s\b)'%x for x in words])+'.+</a>'
+			self.regex=r'href="(?P<url>.*)".*?>'+"".join([r'(?=.*\b%s\b)'%x for x in words])+'.+</a>'
 
 	def download(self):
 		r = requests.get(self.url,allow_redirects=True)
