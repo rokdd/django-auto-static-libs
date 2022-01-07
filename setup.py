@@ -2,9 +2,8 @@ from os.path import join, dirname
 from distutils.core import setup
 
 try:
-    f = open(join(dirname(__file__), 'README.md'))
-    long_description = f.read()
-    f.close()
+    with open("README.md", "r", encoding="utf-8") as fh:
+        long_description = fh.read()
 
 except IOError:
     long_description = None
