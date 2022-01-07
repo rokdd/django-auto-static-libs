@@ -1,8 +1,8 @@
-## Idea
+# Idea
 
 Provide basic libraries and resources like jQuery or semantic-ui in django applications. Make it easier for keeping them updated and self-hosted. 
 
-## Installation
+# Installation
 
 For the moment you can install the package with:
 
@@ -10,20 +10,19 @@ For the moment you can install the package with:
 pip install django-auto-static-libs
 ```
 
-Afterwards add ``'django_auto_static_libs'`` after ``'django.contrib.staticfiles'`` to INSTALLED_APPS in
+Afterwards add `'django_auto_static_libs'` after `'django.contrib.staticfiles'` to INSTALLED_APPS in
 your settings.py:
+
 ```python
 INSTALLED_APPS = (
-    # ...
-
-    'django.contrib.staticfiles',
-    'django_auto_static_libs',
-
-    # ...
+# ...
+'django.contrib.staticfiles',
+'django_auto_static_libs',
+# ...
 )
 ```
 
-### Usage
+# Usage
 
 In your templates add:
 ```html
@@ -38,9 +37,9 @@ python manage.py static-libs-download
 python manage.py static-libs-download
 ```
 
-### Configuration
+# Configuration
 
-#### Manage libraries
+## Manage libraries
 Currently it supports the following libraries (bold is the name of the corresponding configuration):
 
 * **jquery**: jQuery from github
@@ -58,32 +57,32 @@ In your settings.py:
 from django_static_libs.libraries import jquery
 DJANGO_AUTO_STATIC_LIBS = {
 #The default is the jquery library. If you add other or custom libraries it will replace the default. it need always to be a dict, the key represents your folder and will be needed for the static import
-'libraries': { 
-            'jquery':jquery,
-            
-            'custom_full':
-                {
-                'provider' : GithubProvider("jquery/jquery"),
-			    'suffix_ignore': [".json"],
-			    'files_include': r"jquery-[\d\.]+/dist/(.*\.(js|map))",
-			    #auto creates in your static root a folder "latest_static_libs". If you change this default path be careful in the templates
-			    'destination':"auto",
-                }
-            }
+'libraries': {
+'jquery':jquery,
+'custom_full':
+{
+'provider' : GithubProvider("jquery/jquery"),
+'suffix_ignore': [".json"],
+'files_include': r"jquery-[\d\.]+/dist/(.*\.(js|map))",
+#auto creates in your static root a folder "latest_static_libs". If you change this default path be careful in the templates
+'destination':"auto",
+}
+}
 }
 ```
-#### Add your own library
+## Add your custom library
 
 You can add your own library as a dict into the config. Please submit your configurations by pull request or issue that it can be added for everyone.
 
-| Property      | Value                  | Example                                 | Description                                                                                            |
-|---------------|------------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------------|
-| **provider**    | object of BaseProvider | ```GithubProvider("jquery/jquery")```   | Take github class as example, it gives access to the files                                             |
+| Property          | Value                  | Example                                 | Description                                                                                                      |
+|-------------------|------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| **provider**      | object of BaseProvider | ```GithubProvider("jquery/jquery")```   | Take github class as example, it gives access to the files                                                       |
 | **files_include** | regex as str           | ```[".json"]```                         | regex to include file or dir when extracting / downloading (the first matching group defines the path of folder) |
-| **suffix_ignore** | list                   | ```r"jquery-[\d\.]+/dist/(.*\.(js))"``` | list of suffixes to exclude when extracting / downloading                                              |
-| **destination** | str                    | "auto"                                    | Future releases to define path                                                                         |
+| **suffix_ignore** | list                   | ```r"jquery-[\d\.]+/dist/(.*\.(js))"``` | list of suffixes to exclude when extracting / downloading                                                        |
+| **destination**   | str                    | ```"auto"```                            | Future releases to define path                                                                                   |
 
-### Future features
+
+# Future features
 
 * own folder in static
 * templates for include in header and footer
