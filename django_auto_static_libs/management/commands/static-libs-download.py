@@ -59,22 +59,25 @@ class Command(BaseCommand):
 			r = lib["provider"].download()
 			# only continue when there is data
 			if r is not None:
+				if not isinstance(r, list):
+					r=list[r]
 				z=None
-				if isinstance(r,list):
-					#create empty temporary zip file
-					bytes_zip_buffer = io.BytesIO(b'PK\x05\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
-					z = zipfile.ZipFile(bytes_zip_buffer, "a", zipfile.ZIP_DEFLATED, False)
-					for rfile in r:
-						#print(rfile.headers)
-						#rfile.headers.get("content-disposition").split("filename=")[1]
-						z.writestr(os.path.basename(rfile.url),rfile.content)
-				elif isinstance(r,requests.Response) and r.headers.get('content-type') == "application/zip":
-					z = zipfile.ZipFile(io.BytesIO(r.content))
-				else:
-					print("Currently the files or method to download is not supported yet",r)
-				if z is not None:
-					for zip_info in z.infolist():
-						self.handle_file(k, lib, lib["destination"] , zip_info, zfile=z)
+				for rfile in r:
+					if isinstance(rfile,requests.Response) and rfile.headers.get('content-type') == "application/zip":
+						z = zipfile.ZipFile(io.BytesIO(rfile.content))
+					elif isinstance(rfile,requests.Response):
+						#create empty temporary zip file
+						bytes_zip_buffer = io.BytesIO(b'PK\x05\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+						z = zipfile.ZipFile(bytes_zip_buffer, "a", zipfile.ZIP_DEFLATED, False)
+						for rfile_sub in rfile:
+							#print(rfile.headers)
+							#rfile.headers.get("content-disposition").split("filename=")[1]
+							z.writestr(os.path.basename(rfile_sub.url),rfile_sub.content)
+					else:
+						print("Currently the files or method to download is not supported yet",r)
+					if z is not None:
+						for zip_info in z.infolist():
+							self.handle_file(k, lib, lib["destination"] , zip_info, zfile=z)
 
 			else:
 				print("Could not download library: %s" % (k))
