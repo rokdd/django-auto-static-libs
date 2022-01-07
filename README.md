@@ -4,7 +4,7 @@ Provide basic libraries and resources like jQuery or semantic-ui in django appli
 
 # Installation
 
-For the moment you can install the package with:
+You can install the package with pip:
 
 ```bash
 pip install django-auto-static-libs
@@ -24,15 +24,15 @@ INSTALLED_APPS = (
 
 # Usage
 
-In your templates add:
+In your templates add depending on the library and how you named the folder:
 ```html
 {% load static %}
-<script src="{% static 'latest_auto_static_libs/js/jquery/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'latest_auto_static_libs/jquery/jquery.min.js' %}" type="text/javascript"></script>
 ```
 
-You must run the downloading at the beginning (and to update again):
+You must run the downloading at the beginning (or to update). It will run automatically at migration:
 ```python
-python manage.py static-libs-download
+python manage.py migrate
 #or as command
 python manage.py static-libs-download
 ```
