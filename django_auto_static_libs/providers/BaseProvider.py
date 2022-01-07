@@ -1,4 +1,4 @@
-import requests,re
+import requests,re,urllib
 from django.core.exceptions import ImproperlyConfigured
 
 class BaseProvider:
@@ -46,5 +46,8 @@ class SingleUrlByExtractProvider(SingleUrlProvider):
 		if url is None:
 			return None
 		else:
+			# add domain when necessary
+			if bool(urllib.parse.urlparse(url).netloc)==False:
+				url=urllib.parse.urljoin(self.url,url)
 			self.urls=[url]
 		return super().download()
