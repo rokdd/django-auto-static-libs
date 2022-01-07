@@ -59,8 +59,8 @@ class Command(BaseCommand):
 			r = lib["provider"].download()
 			# only continue when there is data
 			if r is not None:
-				if not isinstance(r, list):
-					r=list[r]
+				if not r is list:
+					r=list(r)
 				z=None
 				for rfile in r:
 					if isinstance(rfile,requests.Response) and rfile.headers.get('content-type') == "application/zip":
