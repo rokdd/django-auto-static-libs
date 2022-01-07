@@ -1,8 +1,8 @@
 from django_auto_static_libs.providers.GithubProvider import GithubProvider
-
+from django_auto_static_libs.providers.BaseProvider import SingleUrlProvider
 default = {
 	'suffix_ignore': [],
-	'files_include': '.*',
+	'files_include': '(.*)',
 	'destination': "auto",
 }
 
