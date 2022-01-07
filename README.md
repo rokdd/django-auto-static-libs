@@ -44,10 +44,13 @@ python manage.py static-libs-download
 Currently it supports the following libraries (bold is the name of the corresponding configuration):
 
 * **jquery**: jQuery from github
+* **jquery_ui**: [jQuery UI](https://jqueryui.com/) from their website
+* **bootstrap**: [bootstrap](https://getbootstrap.com)Javascript helper functions for pygal from their website
 * **fomantic_ui**: [Fomantic-UI](https://fomantic-ui.com/) from github (fork of semantic UI)
 * **semantic_ui**: [Semantic-UI](https://semantic-ui.com/) from github
 * **masonry**: [Masonry](https://masonry.desandro.com/) from github
 * **pygal_js**: [pygal.js](https://github.com/Kozea/pygal.js/)Javascript helper functions for pygal from github
+
 
 In your settings.py:
 ```python
@@ -83,8 +86,8 @@ You can add your own library as a dict into the config. Please submit your confi
 ### Future features
 
 * own folder in static
+* templates for include in header and footer
 * add more libraries for downloading
 * new command: list of all libraries
 * remember the currently installed version
-* better error handling for download
 * testing
