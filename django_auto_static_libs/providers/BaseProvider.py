@@ -31,6 +31,9 @@ class SingleUrlByExtractProvider(SingleUrlProvider):
 		if words is None and regex is None:
 			raise ImproperlyConfigured("Django-auto-static-libs/"+self.__name__+" needs either words= or regex= argument")
 		if regex is not None:
+			if not '<url>' in regex:
+				raise ImproperlyConfigured(
+					"Django-auto-static-libs/" + self.__name__ + " needs named capturing group for url: (?P<url>.*)")
 			self.regex=regex
 		else:
 			#generate regex
