@@ -57,18 +57,21 @@ class Command(BaseCommand):
 				#template.format(**variables)
 
 			r = lib["provider"].download()
-			# only continue when there is data
+
+			# only continue when there are files
 			if r is not None:
+				# make sure that we iterate over a list
 				if not r is list:
 					r=list(r)
 
 				for rfile in r:
 					z = None
 
+					# when zip extract it directly
 					if isinstance(rfile,requests.Response) and rfile.headers.get('content-type') == "application/zip":
 						z = zipfile.ZipFile(io.BytesIO(rfile.content))
 					elif isinstance(rfile,requests.Response):
-						#create empty temporary zip file
+						#create empty temporary zip file if z not yet exists
 						if z is None:
 							bytes_zip_buffer = io.BytesIO(b'PK\x05\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
 							z = zipfile.ZipFile(bytes_zip_buffer, "a", zipfile.ZIP_DEFLATED, False)
