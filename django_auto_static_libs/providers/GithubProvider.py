@@ -16,6 +16,6 @@ class GithubProvider(BaseProvider):
         if not r.ok or r.content is None:
             return None
         
-        return r
+        return [r]
 
 
