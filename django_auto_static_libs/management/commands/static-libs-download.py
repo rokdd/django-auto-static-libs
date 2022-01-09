@@ -50,7 +50,7 @@ class Command(BaseCommand):
 				print("Could not find type of library")
 				continue
 			if not "destination" in lib or lib["destination"] == "auto":
-				lib["destination"] = os.path.join(settings.STATIC_ROOT, "latest_auto_static_libs")
+				lib["destination"] = settings.DESTINATION_ROOT
 			else:
 				print("Currently only auto path is support as destination")
 				#>> > variables = {"publication": "article", "author": "Me"}

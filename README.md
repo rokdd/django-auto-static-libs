@@ -27,7 +27,7 @@ INSTALLED_APPS = (
 In your templates add depending on the library and how you named the folder:
 ```html
 {% load static %}
-<script src="{% static 'latest_auto_static_libs/jquery/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'latest-auto-static-libs/jquery/jquery.min.js' %}" type="text/javascript"></script>
 ```
 
 You must run the downloading at the beginning (or to update). It will run automatically at migration:
@@ -48,7 +48,7 @@ Currently it supports the following libraries (bold is the name of the correspon
 * **fomantic_ui**: [Fomantic-UI](https://fomantic-ui.com/) from github (fork of semantic UI)
 * **semantic_ui**: [Semantic-UI](https://semantic-ui.com/) from github
 * **masonry**: [Masonry](https://masonry.desandro.com/) from github
-* **pygal_js**: [pygal.js](https://github.com/Kozea/pygal.js/)Javascript helper functions for pygal from github
+* **pygal_js**: [pygal.js](https://github.com/Kozea/pygal.js/) Javascript helper functions for pygal from github
 
 
 In your settings.py:
@@ -57,17 +57,17 @@ In your settings.py:
 from django_static_libs.libraries import jquery
 DJANGO_AUTO_STATIC_LIBS = {
 #The default is the jquery library. If you add other or custom libraries it will replace the default. it need always to be a dict, the key represents your folder and will be needed for the static import
-'libraries': {
-'jquery':jquery,
-'custom_full':
-{
-'provider' : GithubProvider("jquery/jquery"),
-'suffix_ignore': [".json"],
-'files_include': r"jquery-[\d\.]+/dist/(.*\.(js|map))",
-#auto creates in your static root a folder "latest_static_libs". If you change this default path be careful in the templates
-'destination':"auto",
-}
-}
+    'libraries': {
+        'jquery': jquery,
+        'custom_full': {
+            'provider' : GithubProvider("jquery/jquery"),
+            'suffix_ignore': [".json"],
+            'files_include': r"jquery-[\d\.]+/dist/(.*\.(js|map))",
+            #auto creates in your static root a folder "latest_static_libs". If you change this default path be careful in the templates
+            'destination': "auto",
+        }
+    },
+    'destination_folder': 'django-auto-static-libs'
 }
 ```
 ## Add your custom library
@@ -89,4 +89,5 @@ You can add your own library as a dict into the config. Please submit your confi
 * add more libraries for downloading
 * new command: list of all libraries
 * remember the currently installed version
+* improve logging / no prints
 * testing
