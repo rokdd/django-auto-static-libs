@@ -67,8 +67,14 @@ class Command(BaseCommand):
 				for rfile in r:
 					z = None
 
+					# some work on the url to detect the correct filetype later:
+					if isinstance(rfile,requests.Response) and hasattr(rfile.headers,"Content-Disposition") and "filename" in getattr(rfile.headers,"Content-Disposition"):
+						url=getattr(rfile.headers,"Content-Disposition").split("filename=")[1]
+					else:
+						url=rfile.url
+
 					# when zip extract it directly
-					if isinstance(rfile,requests.Response) and rfile.headers.get('content-type') == "application/zip":
+					if isinstance(rfile,requests.Response) and (rfile.headers.get('content-type') == "application/zip" or '.zip' in url):
 						z = zipfile.ZipFile(io.BytesIO(rfile.content))
 					elif isinstance(rfile,requests.Response):
 						#create empty temporary zip file if z not yet exists
@@ -76,7 +82,7 @@ class Command(BaseCommand):
 							bytes_zip_buffer = io.BytesIO(b'PK\x05\x06\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
 							z = zipfile.ZipFile(bytes_zip_buffer, "a", zipfile.ZIP_DEFLATED, False)
 
-						z.writestr(os.path.basename(rfile.url),rfile.content)
+						z.writestr(os.path.basename(url),rfile.content)
 					else:
 						print("Currently the files or method to download is not supported yet",rfile)
 					if z is not None:
