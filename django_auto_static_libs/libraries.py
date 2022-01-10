@@ -51,7 +51,7 @@ bootstrap={
 	'destination': "auto",
 }
 fontawesome = {
-	'provider': GithubProvider("FortAwesome/Font-Awesome",file="fontawesome-free-{response_json[tag_name]}-web.zip"),
+	'provider': GithubProvider("FortAwesome/Font-Awesome",file="releases/download/{response_json[tag_name]}/fontawesome-free-{response_json[tag_name]}-web.zip"),
 	'suffix_ignore': [],
 	'files_include': r"fontawesome-[^/]*/(.*)",
 	'destination': "auto",
