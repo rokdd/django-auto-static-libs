@@ -85,7 +85,6 @@ You can add your own library as a dict into the config. Please submit your confi
 
 # Future features
 
-* own folder in static
 * templates for include in header and footer
 * add more libraries for downloading
 * new command: list of all libraries
