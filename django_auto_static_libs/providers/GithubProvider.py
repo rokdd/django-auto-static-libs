@@ -3,7 +3,7 @@ import requests, zipfile, io
 import os, re, pathlib, errno
 
 class GithubProvider(BaseProvider):
-    def __init__(self, repo,file="response_json[tag_name].zip"):
+    def __init__(self, repo,file="{response_json[tag_name]}.zip"):
         self.repo = repo
         self.file=file
     def download(self):

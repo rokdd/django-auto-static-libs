@@ -45,6 +45,7 @@ Currently it supports the following libraries (bold is the name of the correspon
 * **jquery**: jQuery from github
 * **jquery_ui**: [jQuery UI](https://jqueryui.com/) from their website
 * **bootstrap**: [bootstrap](https://getbootstrap.com)Javascript helper functions for pygal from their website
+* **fontawesome**: [Fontawesome](https://fontawesome.com) from github
 * **fomantic_ui**: [Fomantic-UI](https://fomantic-ui.com/) from github (fork of semantic UI)
 * **semantic_ui**: [Semantic-UI](https://semantic-ui.com/) from github
 * **masonry**: [Masonry](https://masonry.desandro.com/) from github
