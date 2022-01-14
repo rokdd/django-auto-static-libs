@@ -10,9 +10,6 @@ from django_auto_static_libs import settings
 class Command(BaseCommand):
 	help = 'Download library from their sources'
 
-	#   def add_arguments(self, parser):
-	#       parser.add_argument('total', type=int, help='Indicates the number of users to be created')
-
 	def handle_file(self, k, lib, folder, zip_info, zfile=None):
 		mt=re.match(lib['files_include'], zip_info.filename)
 		if not mt:

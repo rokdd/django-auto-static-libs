@@ -5,7 +5,7 @@ import os
 
 DJANGO_AUTO_STATIC_LIBS = dict(libraries={
 	'jquery': jquery
-}, destination_folder='django-auto-static-libs')
+}, destination_folder='latest-auto-static-libs')
 
 if hasattr(django_settings, "DJANGO_AUTO_STATIC_LIBS"):
 	if 'libraries' in getattr(django_settings, "DJANGO_AUTO_STATIC_LIBS"):
