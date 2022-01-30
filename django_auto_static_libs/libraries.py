@@ -18,6 +18,12 @@ jquery_ui = {
 	'files_include': r"jquery-ui-[\d\.]+/(.*)",
 	'destination': "auto",
 }
+jquery_mobile = {
+	'provider': SingleUrlByExtractProvider("https://jquerymobile.com/",regex=r'href="(?P<url>.*)".*class="button".*>(?=.*\bstable\b).+</a>'),
+	'suffix_ignore': [""],
+	'files_include': r"jquery.mobile-[\d\.]+/(.*)",
+	'destination': "auto",
+}
 fomantic_ui = {
 	'provider': GithubProvider("fomantic/Fomantic-UI"),
 	'suffix_ignore': [".json"],
