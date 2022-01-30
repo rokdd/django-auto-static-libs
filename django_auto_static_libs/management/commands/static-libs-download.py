@@ -23,7 +23,7 @@ class Command(BaseCommand):
 		#os.path.basename(zip_info.filename)
 		#
 		try:
-			os.makedirs(Path(zip_info.filename).parent)
+			os.makedirs(os.path.join(folder, Path(zip_info.filename).parent))
 		except OSError as e:
 			if e.errno != errno.EEXIST:
 				print("Could not create folder " + folder)
