@@ -21,7 +21,7 @@ jquery_ui = {
 jquery_mobile = {
 	'provider': SingleUrlByExtractProvider("https://jquerymobile.com/",regex=r'href="(?P<url>.*)".*class="button".*>(?=.*\bstable\b).+</a>'),
 	'suffix_ignore': [""],
-	'files_include': r"^(?!demos)(.*/.*)",
+	'files_include': r"^(?!demos)(.*)",
 	'destination': "auto",
 }
 fomantic_ui = {
