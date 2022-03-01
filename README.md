@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/django-auto-static-libs.svg)](https://badge.fury.io/py/django-auto-static-libs)
+
 # Idea
 
 Provide basic libraries and resources like jQuery or semantic-ui in django applications. Make it easier for keeping them updated and self-hosted. 
