@@ -56,7 +56,7 @@ Currently it supports the following libraries (bold is the name of the correspon
 In your settings.py:
 ```python
 #some imports
-from django_static_libs.libraries import jquery
+from django_auto_static_libs.libraries import jquery
 DJANGO_AUTO_STATIC_LIBS = {
 #The default is the jquery library. If you add other or custom libraries it will replace the default. it need always to be a dict, the key represents your folder and will be needed for the static import
     'libraries': {
