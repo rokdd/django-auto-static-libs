@@ -1,6 +1,6 @@
 from os.path import join, dirname
 from distutils.core import setup
-
+from setuptools import find_packages
 try:
 	with open("README.md", "r", encoding="utf-8") as fh:
 		long_description = fh.read()
@@ -30,7 +30,7 @@ setup(
 		'Operating System :: OS Independent',
 		'Programming Language :: Python',
 	],
-	packages=['django_auto_static_libs'],
+	packages=find_packages(),
 
 	install_requires=[
 		'requests',
