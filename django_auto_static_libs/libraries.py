@@ -65,6 +65,6 @@ fontawesome = {
 initter_js = {
 	'provider': GithubProvider("rokdd/initter-js"),
 	'suffix_ignore': [],
-	'files_include': r"(.*)",
+	'files_include': r"initter-js-[^/]*/(.*\.js)",
 	'destination': "auto",
 }
