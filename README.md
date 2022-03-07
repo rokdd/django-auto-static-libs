@@ -53,7 +53,9 @@ Currently it supports the following libraries (bold is the name of the correspon
 * **semantic_ui**: [Semantic-UI](https://semantic-ui.com/) from github
 * **masonry**: [Masonry](https://masonry.desandro.com/) from github
 * **pygal_js**: [pygal.js](https://github.com/Kozea/pygal.js/) Javascript helper functions for pygal from github
+* **initter_js**: [initter.js](https://github.com/rokdd/initter-js/) Javascript conditioner for initiating from github
 
+Is your favorite or own library missing? Just drop as an issue or even better a PR that we can integrate your library.
 
 In your settings.py:
 ```python

@@ -3,7 +3,7 @@
 Version code adopted from Django development version.
 https://github.com/django/django
 """
-VERSION = (0, 4,6, 'final', 0)
+VERSION = (0, 4,7, 'final', 0)
 
 def get_version(version=None):
     """

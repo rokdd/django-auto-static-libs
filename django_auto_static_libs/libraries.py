@@ -62,3 +62,9 @@ fontawesome = {
 	'files_include': r"fontawesome-[^/]*/(.*)",
 	'destination': "auto",
 }
+initter_js = {
+	'provider': GithubProvider("rokdd/initter-js"),
+	'suffix_ignore': [],
+	'files_include': r"(.*)",
+	'destination': "auto",
+}
